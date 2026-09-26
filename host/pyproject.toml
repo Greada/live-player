@@ -34,7 +34,8 @@ dev = [
 liveplayer = "liveplayer.__main__:main"
 
 [project.urls]
-Homepage = "https://github.com/greada/live-player"
+Homepage = "https://github.com/Greada/live-player"
+Repository = "https://gitee.com/greada/live-player"
 
 [tool.setuptools]
 packages = ["liveplayer"]
