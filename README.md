@@ -1,5 +1,7 @@
 # LivePlayer
 
+> 🌐 简体中文 | [English](README.en.md)
+
 在 Edge 浏览器里一键把 **B站直播 / 斗鱼 / 虎牙 / B站视频** 用 **PotPlayer** 播放，
 优先最高画质（4K / 原画 / 蓝光）。
 
@@ -34,6 +36,7 @@ live-player/
     unregister-edge.ps1
     extension-key.txt        扩展固定 ID 与公钥
   CONTRIBUTING.md  CHANGELOG.md  SECURITY.md  LICENSE(MIT)
+  README.md(中文)  README.en.md(English)
 ```
 
 ## 环境要求

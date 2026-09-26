@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+### Added
+- 英文文档 `README.en.md`，中英双语互链。
+
 ### Fixed
 - **斗鱼播放卡顿 / 速率仅数百 KB/s**：代理不再“每个新连接都重新解析上游”。
   此前 PotPlayer 每次重连都会触发一次斗鱼 `getH5PlayV1` 请求，斗鱼对高频请求返回
