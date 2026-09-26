@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="head">
+    <span class="logo">▶</span>
+    <div>
+      <div class="title">LivePlayer</div>
+      <div class="sub">用 PotPlayer 播放当前页面</div>
+    </div>
+  </div>
+
+  <div id="page-info" class="info">正在识别当前页面…</div>
+
+  <label class="row">
+    <span>画质</span>
+    <select id="quality">
+      <option value="best">最高（4K 优先）</option>
+      <option value="4k">4K</option>
+      <option value="1080p">1080P</option>
+      <option value="720p">720P</option>
+      <option value="480p">480P</option>
+    </select>
+  </label>
+
+  <div class="actions">
+    <button id="play" class="primary">用 PotPlayer 播放</button>
+    <button id="list">列出画质</button>
+    <button id="copy">复制直链</button>
+  </div>
+
+  <div id="result" class="result"></div>
+
+  <div class="foot">
+    <span id="helper-status" class="muted">检查助手…</span>
+    <a href="#" id="open-options">设置</a>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

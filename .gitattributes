@@ -1,0 +1,6 @@
+# 统一换行：源码/文档按 LF 存储，Windows 脚本保持 CRLF
+* text=auto
+*.bat text eol=crlf
+*.ps1 text eol=crlf
+*.png binary
+*.ico binary

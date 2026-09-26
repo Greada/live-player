@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <title>LivePlayer 设置</title>
+  <style>
+    body { font: 14px/1.6 "Microsoft YaHei", system-ui, sans-serif; max-width: 520px; margin: 32px auto; padding: 0 16px; color: #222; }
+    h1 { font-size: 18px; }
+    label { display: block; margin: 16px 0 6px; font-weight: 600; }
+    select, button { padding: 6px 10px; font-size: 14px; }
+    .muted { color: #666; font-size: 12px; }
+    #status { margin-top: 16px; padding: 10px; background: #f5f5f5; border-radius: 6px; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <h1>LivePlayer 设置</h1>
+
+  <label for="defaultQuality">默认画质</label>
+  <select id="defaultQuality">
+    <option value="best">最高（4K 优先）</option>
+    <option value="4k">4K</option>
+    <option value="1080p">1080P</option>
+    <option value="720p">720P</option>
+    <option value="480p">480P</option>
+  </select>
+  <div class="muted">播放时仍可在弹窗中临时切换。</div>
+
+  <label>本地助手状态</label>
+  <button id="check">检查助手 (com.liveplayer.host)</button>
+  <div id="status">未检查</div>
+
+  <p class="muted">
+    如提示“无法连接本地助手”，请确认已运行 <code>install\register-edge.ps1</code>，
+    且 <code>host\dist\host.exe</code> 存在。
+  </p>
+
+  <script src="options.js"></script>
+</body>
+</html>

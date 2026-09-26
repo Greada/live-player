@@ -1,0 +1,49 @@
+:root {
+  --bg: #1e1f24;
+  --panel: #2a2c33;
+  --text: #e8e8ea;
+  --muted: #9aa0aa;
+  --accent: #23ade5;
+  --danger: #ff6b6b;
+}
+* { box-sizing: border-box; }
+body {
+  width: 320px;
+  margin: 0;
+  padding: 12px;
+  background: var(--bg);
+  color: var(--text);
+  font: 13px/1.5 "Microsoft YaHei", system-ui, sans-serif;
+}
+.head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.logo {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: var(--accent); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+}
+.title { font-weight: 600; font-size: 14px; }
+.sub { color: var(--muted); font-size: 11px; }
+.info {
+  background: var(--panel); border-radius: 6px; padding: 8px 10px;
+  margin-bottom: 10px; word-break: break-all;
+}
+.row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+select {
+  background: var(--panel); color: var(--text); border: 1px solid #3a3d45;
+  border-radius: 6px; padding: 4px 6px;
+}
+.actions { display: flex; flex-direction: column; gap: 6px; }
+button {
+  background: var(--panel); color: var(--text); border: 1px solid #3a3d45;
+  border-radius: 6px; padding: 8px; cursor: pointer; font-size: 13px;
+}
+button:hover { border-color: var(--accent); }
+button.primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+button:disabled { opacity: 0.5; cursor: default; }
+.result { margin-top: 10px; font-size: 12px; word-break: break-all; min-height: 1em; }
+.result.error { color: var(--danger); }
+.result.ok { color: #7fe08a; }
+.foot { display: flex; justify-content: space-between; margin-top: 10px; font-size: 11px; }
+.muted { color: var(--muted); }
+a { color: var(--accent); text-decoration: none; }

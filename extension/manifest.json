@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "LivePlayer - PotPlayer 直播/视频助手",
+  "version": "0.1.0",
+  "description": "识别 B站 / 斗鱼 / 虎牙 直播间与 B站视频，点击用 PotPlayer 播放（4K 优先）。",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmKiezD1bkFurgutosNl8jbkc03u9WguXxAUNJn0z1+qUjEqzpFQhYnVHgGCV46bLMtvX/WVYuI+EphTNfM8r5hRF1gt7dU2dhkChGpg9UvGgKkLpr+k5mWKQFyOyA0lZp/X77sqfr7GjFTVF44615aQZ6hRFlSAbn/ScFRkRKXnEHVA5eBsGjn4hJeQeio/q12izCEvQ6gaq5Rfc63ugdNaTiNWVzsnJ3sW+Q4RI9grqqD6OGOoKnzDvMrD7qKia1m6WZKFsQCGNdZNv5tjM7KAW1w0z42Q0n+cVZRTJR/uKIZqARmyMhbGesphXj4LnMKDGOq0N3gQjfgarg/dvCQIDAQAB",
+  "permissions": ["nativeMessaging", "cookies", "contextMenus", "storage", "tabs"],
+  "host_permissions": [
+    "*://*.bilibili.com/*",
+    "*://*.douyu.com/*",
+    "*://*.huya.com/*"
+  ],
+  "background": { "service_worker": "background.js" },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "用 PotPlayer 播放"
+  },
+  "options_page": "options.html",
+  "icons": { "128": "icons/icon128.png" }
+}

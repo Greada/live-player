@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Virtualenv
+.venv/
+venv/
+env/
+
+# PyInstaller
+*.spec
+
+# 本机生成的配置 / 产物（含绝对路径，不应入库）
+host/host.config.toml
+install/com.liveplayer.host.json
+
+# 本地 agent 运行时状态（含本机路径）
+.opencode/
+
+# 日志 / 系统
+*.log
+Thumbs.db
+.DS_Store
+
+# 编辑器
+.idea/
+.vscode/

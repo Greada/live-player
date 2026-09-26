@@ -1,0 +1,23 @@
+# 复制为 host.config.toml 后按需修改（与 run_host.bat / host.exe 同目录）。
+# 所有项均可留空，留空时自动探测 / 使用默认。
+
+# PotPlayer 可执行文件路径；留空时自动探测 Scoop / PATH / 常见安装路径。
+potplayer_path = ""
+
+# 默认画质：best / 4k / 1080p / 720p / <format_id>
+default_quality = "best"
+
+# yt-dlp 可执行文件路径（当前以库方式内置，一般无需设置）。
+yt_dlp_path = ""
+
+# 预留：streamlink 备用解析器路径
+streamlink_path = ""
+
+# 播放时按视频尺寸调整 PotPlayer 窗口（并按屏幕工作区等比缩放、居中）。
+fit_window = true
+
+# 窗口最多占屏幕工作区的比例（0.5 ~ 1.0）。
+fit_window_cover = 0.95
+
+# 本地流代理空闲多少秒后自动退出。
+proxy_idle_timeout = 300
