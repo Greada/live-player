@@ -2,6 +2,13 @@ name: Mirror from Gitee
 
 # 从 Gitee 仓库拉取分支/标签并同步到本 GitHub 仓库。
 # 说明：Gitee 的开放 API 不支持镜像配置，故用 GitHub Actions 反向拉取实现自动同步。
+#
+# 关于权限：
+#   内置的 GITHUB_TOKEN 不允许创建/更新 .github/workflows/* 文件，
+#   因此当 Gitee 侧改动了工作流文件时，同步会失败。
+#   若要完整同步，请添加仓库 Secret：MIRROR_TOKEN = 一个带 `repo` + `workflow`
+#   权限的经典 PAT；未设置时退回 GITHUB_TOKEN（可同步除工作流外的所有改动）。
+#
 # 注意：定时任务在仓库 60 天无活动后会被 GitHub 自动暂停，届时手动触发一次即可恢复。
 
 on:
@@ -24,6 +31,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          # 优先使用可同步工作流文件的 PAT；未配置时退回 GITHUB_TOKEN
+          token: ${{ secrets.MIRROR_TOKEN || secrets.GITHUB_TOKEN }}
 
       - name: Fetch from Gitee
         run: |
