@@ -31,11 +31,13 @@ class _Resolved:
         self.url = url
 
 
-def _patches(platform_name: str, calls: list, new_url: str):
+def _patches(platform_name: str, calls: list, new_url: str, delay: float = 0.0):
     def fake_detect(text: str):
         return platform.Target(platform_name, text, room_id="1")
 
     def fake_resolve(target, quality="", cookies="", cfg=None):
+        if delay:
+            time.sleep(delay)
         calls.append(1)
         return _Resolved(new_url)
 
@@ -47,8 +49,10 @@ def _patches(platform_name: str, calls: list, new_url: str):
     ]
 
 
-def _state(stack: ExitStack, platform_name: str, calls: list, new_url: str) -> proxy.StreamState:
-    for patcher in _patches(platform_name, calls, new_url):
+def _state(
+    stack: ExitStack, platform_name: str, calls: list, new_url: str, delay: float = 0.0
+) -> proxy.StreamState:
+    for patcher in _patches(platform_name, calls, new_url, delay):
         stack.enter_context(patcher)
     return proxy.StreamState(
         {
@@ -85,18 +89,22 @@ def test_force_resolves_once():
 
 
 def test_ttl_refresh_is_background():
-    """TTL 到期后应立即返回旧地址（不阻塞），随后在后台刷新。"""
+    """TTL 到期后应立即返回（不等待解析），随后在后台刷新。
+
+    这里把解析模拟为耗时 0.5s，从而确定性地证明 acquire 不会同步等待解析；
+    否则存在竞态：后台线程可能在 acquire 返回前就已完成刷新。
+    """
     calls: list = []
     with ExitStack() as stack:
-        state = _state(stack, platform.DOUYU, calls, _NEW_URL)
+        state = _state(stack, platform.DOUYU, calls, _NEW_URL, delay=0.5)
         state._resolved_at = time.time() - proxy._REFRESH_SECONDS - 5
         state._next_refresh = time.time() - 1  # 视为 TTL 已到期
 
         began = time.time()
         url, _, _ = state.acquire()
         elapsed = time.time() - began
-        assert url == _OLD_URL, "刷新前应继续用旧地址服务"
-        assert elapsed < 0.5, f"acquire 不应被解析阻塞，实际 {elapsed:.2f}s"
+        assert elapsed < 0.3, f"acquire 不应被解析阻塞，实际 {elapsed:.2f}s"
+        assert url == _OLD_URL, "后台刷新完成前应继续用旧地址服务"
 
         deadline = time.time() + 3.0
         while state._url != _NEW_URL and time.time() < deadline:
